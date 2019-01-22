@@ -10,10 +10,21 @@ type MyNode struct {
 
 type MyGraph struct {
 	nodes []*MyNode
-	edges map[MyNode][]*MyNode
+	edges map[*MyNode][]*MyNode
+}
+
+func CreateNewGraph() *MyGraph {
+	return &MyGraph{
+		nodes : make([]*MyNode, 0),
+		edges: make(map[*MyNode][]*MyNode),
+	}
+	return nil
 }
 
 func (graph *MyGraph) Size() int {
+	if graph == nil {
+		return 0
+	}
 	return len(graph.nodes)
 }
 
@@ -27,23 +38,21 @@ func (graph *MyGraph) GetNodes() []*MyNode {
 
 func (graph *MyGraph) AddEdge(src, dest *MyNode) {
 	if(graph.edges == nil) {
-		graph.edges = make(map[MyNode][]*MyNode)
+		graph.edges = make(map[*MyNode][]*MyNode)
 	}
-	graph.edges[*src] = append(graph.edges[*src], dest)
+	graph.edges[src] = append(graph.edges[src], dest)
 }
 
-func (graph *MyGraph) GetEdges() map[MyNode][]*MyNode {
+func (graph *MyGraph) GetEdges() map[*MyNode][]*MyNode {
 	return graph.edges
 }
 
 func (graph *MyGraph) PrintGraph() {
 	fmt.Println("Printing the Graph:")
-	i := 0
-	for ;i<len(graph.nodes);i++ {
+	for i := 0;i<len(graph.nodes);i++ {
 		fmt.Print(graph.nodes[i].Data, ": ")
-		j := 0
-		lt := graph.edges[*graph.nodes[i]]
-		for ;j<len(lt);j++ {
+		lt := graph.edges[graph.nodes[i]]
+		for j := 0;j<len(lt);j++ {
 			fmt.Print(lt[j].Data, " ")
 		}
 		fmt.Println()

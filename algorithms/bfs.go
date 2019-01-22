@@ -5,11 +5,11 @@ import (
 	"fmt"
 )
 
-func Bfs(graph ds.MyGraph, src ds.MyNode) {
+func Bfs(graph *ds.MyGraph, src *ds.MyNode) {
 
-	vis := make(map[ds.MyNode]bool)
+	vis := make(map[*ds.MyNode]bool)
 	for _,node := range graph.GetNodes() {
-		vis[*node] = false
+		vis[node] = false
 	}
 
 	q := ds.MyQueue{}
@@ -23,8 +23,8 @@ func Bfs(graph ds.MyGraph, src ds.MyNode) {
 		var n *ds.MyNode
 		flag := false
 		for _,node := range graph.GetNodes() {
-			if node.Data == *val {
-				if vis[*node] == true {
+			if node.Data == val {
+				if vis[node] == true {
 					flag = true
 					break;
 				} else {
@@ -37,16 +37,16 @@ func Bfs(graph ds.MyGraph, src ds.MyNode) {
 			continue
 		}
 
-		vis[*n] = true
-		fmt.Print(*val, " ")
+		vis[n] = true
+		fmt.Print(val, " ")
 
-		for _,nodes := range graph.GetEdges()[*n] {
+		for _,nodes := range graph.GetEdges()[n] {
 
 			flag = false
 			var neigh *ds.MyNode = nil
 			for _,node := range graph.GetNodes() {
 				if nodes.Data == node.Data {
-					if vis[*node] == true {
+					if vis[node] == true {
 						flag = true
 						break
 					} else {

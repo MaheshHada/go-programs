@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func DfsRecursive(graph ds.MyGraph, node ds.MyNode, vis map[ds.MyNode]bool) {
+func DfsRecursive(graph *ds.MyGraph, node *ds.MyNode, vis map[*ds.MyNode]bool) {
 
 	if vis[node] == true {
 		return
@@ -17,15 +17,15 @@ func DfsRecursive(graph ds.MyGraph, node ds.MyNode, vis map[ds.MyNode]bool) {
 	edges := graph.GetEdges()
 	lt := edges[node]
 	for j := 0;j<len(lt);j++ {
-		DfsRecursive(graph, *lt[j], vis)
+		DfsRecursive(graph, lt[j], vis)
 	}
 }
 
-func Dfs(graph ds.MyGraph, src ds.MyNode) {
+func Dfs(graph *ds.MyGraph, src *ds.MyNode) {
 
-	vis := make(map[ds.MyNode]bool)
+	vis := make(map[*ds.MyNode]bool)
 	for _,node := range graph.GetNodes() {
-		vis[*node] = false;
+		vis[node] = false;
 	}
 
 	st := ds.MyStack{}
@@ -39,8 +39,8 @@ func Dfs(graph ds.MyGraph, src ds.MyNode) {
 		var n *ds.MyNode
 		flag := false
 		for _,node := range graph.GetNodes() {
-			if node.Data == *val {
-				if vis[*node] == true {
+			if node.Data == val {
+				if vis[node] == true {
 					flag = true
 					break;
 				} else {
@@ -53,16 +53,16 @@ func Dfs(graph ds.MyGraph, src ds.MyNode) {
 			continue
 		}
 
-		vis[*n] = true
-		fmt.Print(*val, " ")
+		vis[n] = true
+		fmt.Print(val, " ")
 
-		for _,nodes := range graph.GetEdges()[*n] {
+		for _,nodes := range graph.GetEdges()[n] {
 
 			flag = false
 			var neigh *ds.MyNode = nil
 			for _,node := range graph.GetNodes() {
 				if nodes.Data == node.Data {
-					if vis[*node] == true {
+					if vis[node] == true {
 						flag = true
 						break
 					} else {
