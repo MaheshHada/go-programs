@@ -1,8 +1,8 @@
 package main
 
 import (
-	al "demo/algorithms"
-	ds "demo/data_structures"
+	al "go-programs/algorithms"
+	ds "go-programs/data_structures"
 	"fmt"
 )
 

@@ -1,4 +1,4 @@
-package ds
+package data_structures
 
 import "github.com/pkg/errors"
 
@@ -24,7 +24,7 @@ func (s *MyStack) Pop() (int, error) {
 	}
 	val := s.arr[len(s.arr)-1]
 	if len(s.arr) == 1 {
-		s = &MyStack{arr : make([]int, 0)}
+		s.arr = make([]int, 0)
 		return val, nil
 	}
 	s.arr = s.arr[: len(s.arr)-1]

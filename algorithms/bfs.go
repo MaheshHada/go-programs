@@ -1,7 +1,7 @@
 package algorithms
 
 import (
-	ds "demo/data_structures"
+	ds "go-programs/data_structures"
 	"fmt"
 )
 

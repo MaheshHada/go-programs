@@ -1,4 +1,4 @@
-package ds
+package data_structures
 
 import "github.com/pkg/errors"
 
@@ -24,7 +24,7 @@ func (q *MyQueue) Pop() (int, error) {
 	}
 	val := q.arr[0]
 	if len(q.arr) == 1 {
-		q = &MyQueue{arr: make([]int, 0)}
+		q.arr = make([]int, 0)
 		return val, nil
 	}
 	q.arr = q.arr[1:]

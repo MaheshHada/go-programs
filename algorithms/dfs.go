@@ -1,25 +1,9 @@
 package algorithms
 
 import (
-	ds "demo/data_structures"
+	ds "go-programs/data_structures"
 	"fmt"
 )
-
-func DfsRecursive(graph *ds.MyGraph, node *ds.MyNode, vis map[*ds.MyNode]bool) {
-
-	if vis[node] == true {
-		return
-	}
-
-	fmt.Print(node.Data, " ")
-	vis[node] = true
-
-	edges := graph.GetEdges()
-	lt := edges[node]
-	for j := 0;j<len(lt);j++ {
-		DfsRecursive(graph, lt[j], vis)
-	}
-}
 
 func Dfs(graph *ds.MyGraph, src *ds.MyNode) {
 
@@ -42,11 +26,10 @@ func Dfs(graph *ds.MyGraph, src *ds.MyNode) {
 			if node.Data == val {
 				if vis[node] == true {
 					flag = true
-					break;
 				} else {
 					n = node
-					break
 				}
+				break
 			}
 		}
 		if flag == true {
@@ -64,14 +47,12 @@ func Dfs(graph *ds.MyGraph, src *ds.MyNode) {
 				if nodes.Data == node.Data {
 					if vis[node] == true {
 						flag = true
-						break
 					} else {
 						neigh = node
-						break
 					}
+					break
 				}
 			}
-
 			if flag == true {
 				continue
 			}
